@@ -3,7 +3,7 @@ package gonmap
 import (
 	"errors"
 	"fmt"
-	"github.com/lcvvvv/gonmap/simplenet"
+	"github.com/hary654321/gonmap/simplenet"
 	"regexp"
 	"strconv"
 	"strings"

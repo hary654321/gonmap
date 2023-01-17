@@ -22,7 +22,7 @@ type Logger interface {
 	Println(v ...interface{})
 }
 
-//r["PROBE"] 总探针数、r["MATCH"] 总指纹数 、r["USED_PROBE"] 已使用探针数、r["USED_MATCH"] 已使用指纹数
+// r["PROBE"] 总探针数、r["MATCH"] 总指纹数 、r["USED_PROBE"] 已使用探针数、r["USED_MATCH"] 已使用指纹数
 func init() {
 	initWithFilter(9)
 }
@@ -48,6 +48,15 @@ func initWithFilter(filter int) {
 	for i := 0; i <= 65535; i++ {
 		nmap.portProbeMap[i] = []string{}
 	}
+	//res, err := http.Get("https://svn.nmap.org/nmap/nmap-service-probes")
+	//if err != nil {
+	//	log.Fatal(err)
+	//}
+	//probes, err := ioutil.ReadAll(res.Body)
+	//res.Body.Close()
+
+	//println(string(probes))
+
 	nmap.loads(nmapServiceProbes + nmapCustomizeProbes)
 	//修复fallback
 	nmap.fixFallback()
@@ -164,7 +173,7 @@ func optimizeNMAPProbes() {
 	nmap.probeNameMap["TCP_TerminalServer"].fallback = "TCP_GetRequest"
 }
 
-//配置类
+// 配置类
 func SetFilter(filter int) {
 	initWithFilter(filter)
 }
@@ -173,7 +182,7 @@ func SetLogger(v Logger) {
 	logger = v
 }
 
-//功能类
+// 功能类
 func New() *Nmap {
 	n := *nmap
 	return &n
